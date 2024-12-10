@@ -6,6 +6,7 @@
     <title>Responsive Tiles</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="header">
@@ -32,16 +33,95 @@
         <main class="main-content">
             <div class="container">
                 <div class="tile" onclick="askMath()">
-                    <div class="number">5</div>
-                    <span>Customers likely to repurchase</span>
+                    <div class="number">54</div>
+                    <span>New customer reviews<br>since last log in</span>
                 </div>
-                <div class="tile">2</div>
-                <div class="tile">3</div>
-                <div class="tile">4</div>
+                <div class="tile" onclick="showPricingAnalysis()">
+                    <div class="number">$14K</div>
+                    <span>Lost revenue.<br>View your pricing analysis</span>
+                </div>
+                <div class="tile" onclick="askTax()">
+                    <div class="number">$10K</div>
+                    <span>Potential tax savings found</span>
+                </div>
+                <div class="tile" onclick="showChannelPerformance()">
+                    <div class="number">2</div>
+                    <span>Underperforming<br>channels</span>
+                </div>
+            </div>
+            
+            <div class="metric-dashboard">
+                <div class="metric-tile">
+                    <div class="metric-header">Cart Abandonment Rate</div>
+                    <div class="metric-chart-container">
+                        <canvas id="cartChart"></canvas>
+                    </div>
+                    <div class="metric-footer">
+                        <div class="metric-info">
+                            <div class="metric-value">68%</div>
+                            <div class="metric-trend negative">
+                                <i class="fas fa-arrow-up"></i> 12% vs last month
+                            </div>
+                        </div>
+                        <button class="action-btn" onclick="getActionPlan('cart')">Take action</button>
+                    </div>
+                </div>
+                
+                <div class="metric-tile">
+                    <div class="metric-header">Average Order Value</div>
+                    <div class="metric-chart-container">
+                        <canvas id="aovChart"></canvas>
+                    </div>
+                    <div class="metric-footer">
+                        <div class="metric-info">
+                            <div class="metric-value">$42.50</div>
+                            <div class="metric-trend negative">
+                                <i class="fas fa-arrow-down"></i> 8% vs last month
+                            </div>
+                        </div>
+                        <button class="action-btn" onclick="getActionPlan('aov')">Take action</button>
+                    </div>
+                </div>
+                
+                <div class="metric-tile">
+                    <div class="metric-header">Customer Acquisition Cost</div>
+                    <div class="metric-chart-container">
+                        <canvas id="cacChart"></canvas>
+                    </div>
+                    <div class="metric-footer">
+                        <div class="metric-info">
+                            <div class="metric-value">$28.90</div>
+                            <div class="metric-trend negative">
+                                <i class="fas fa-arrow-up"></i> 15% vs last month
+                            </div>
+                        </div>
+                        <button class="action-btn" onclick="getActionPlan('cac')">Take action</button>
+                    </div>
+                </div>
+                
+                <div class="metric-tile">
+                    <div class="metric-header">Customer Lifetime Value</div>
+                    <div class="metric-chart-container">
+                        <canvas id="ltvChart"></canvas>
+                    </div>
+                    <div class="metric-footer">
+                        <div class="metric-info">
+                            <div class="metric-value">$156</div>
+                            <div class="metric-trend positive">
+                                <i class="fas fa-arrow-up"></i> 5% vs last month
+                            </div>
+                        </div>
+                        <button class="action-btn" onclick="getActionPlan('ltv')">Take action</button>
+                    </div>
+                </div>
             </div>
             
             <div class="chat-container">
                 <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" placeholder="Type your message..." id="chatInput">
+                    <button class="chat-submit" onclick="sendMessage()">Send</button>
+                </div>
             </div>
         </main>
     </div>

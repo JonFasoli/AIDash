@@ -1,42 +1,62 @@
+:root {
+    --qb-primary: #2CA01C;
+    --qb-secondary: #0077C5;
+    --qb-dark: #393A3D;
+    --qb-gray: #8d9096;
+    --qb-light-gray: #F4F5F8;
+    --qb-border: #E3E5E8;
+}
+
 body {
-    font-family: Calibri, 'Segoe UI', sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     margin: 0;
+    background-color: var(--qb-light-gray);
+    color: var(--qb-dark);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 12px 24px;
     background-color: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    height: 48px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .logo img {
-    height: 30px;
+    height: 28px;
 }
 
 .settings {
-    font-size: 24px;
-    color: #666;
+    font-size: 20px;
+    color: var(--qb-gray);
     cursor: pointer;
-    padding: 10px;
+    padding: 8px;
 }
 
 .settings:hover {
-    color: #333;
+    color: var(--qb-secondary);
 }
 
 .container {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     flex-wrap: nowrap;
-    padding: 20px;
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-left: 24px;
 }
 
 .tile {
-    background-color: #f5f5f5;
-    padding: 15px;
+    background-color: white;
+    padding: 20px;
     border-radius: 8px;
     min-width: 200px;
     max-width: 250px;
@@ -46,78 +66,40 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    border: 1px solid var(--qb-border);
 }
 
 .tile:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
 }
 
 .tile .number {
     font-size: 300%;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    color: var(--qb-secondary);
+    font-weight: 600;
 }
 
 .tile span {
     text-align: center;
     font-size: 14px;
-}
-
-/* Mobile responsiveness */
-@media screen and (max-width: 768px) {
-    .tile {
-        width: calc(50% - 10px);
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .tile {
-        width: 100%;
-    }
-}
-
-.chat-container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-}
-
-.chat-messages {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    min-height: 200px;
-    background-color: #f9f9f9;
-}
-
-.message {
-    margin-bottom: 15px;
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.user-message {
-    background-color: #e3f2fd;
-    margin-left: 20%;
-}
-
-.bot-message {
-    background-color: #f5f5f5;
-    margin-right: 20%;
-}
-
-/* Add these new styles */
-.layout {
-    display: flex;
-    min-height: calc(100vh - 70px); /* Subtract header height */
+    color: var(--qb-gray);
+    font-weight: 500;
 }
 
 .side-nav {
     width: 250px;
     background-color: white;
-    padding: 20px 0;
-    border-right: 1px solid #e0e0e0;
+    padding: 12px 0;
+    border-right: 1px solid var(--qb-border);
+    height: 100%;
+    position: fixed;
+    top: 72px;
+    left: 0;
 }
 
 .side-nav ul {
@@ -127,95 +109,174 @@ body {
 }
 
 .side-nav li {
-    padding: 15px 25px;
+    padding: 12px 24px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    color: #666;
-    transition: all 0.3s ease;
+    color: var(--qb-dark);
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .side-nav li i {
-    margin-right: 10px;
+    margin-right: 12px;
     width: 20px;
+    color: var(--qb-gray);
 }
 
 .side-nav li:hover {
-    background-color: #e9ecef;
-    color: #333;
+    background-color: var(--qb-light-gray);
 }
 
 .side-nav li.active {
-    background-color: #e3f2fd;
-    color: #0070ba;
-    font-weight: 500;
+    background-color: #E3F2FD;
+    color: var(--qb-secondary);
+}
+
+.side-nav li.active i {
+    color: var(--qb-secondary);
+}
+
+.layout {
+    padding-top: 48px;
 }
 
 .main-content {
     flex: 1;
-    background-color: #fff;
-}
-
-/* Update existing container styles */
-.container {
-    margin: 20px;
-    max-width: none; /* Remove the max-width constraint */
+    background-color: var(--qb-light-gray);
+    margin-left: 250px;
+    padding: 24px;
+    padding-top: 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .chat-container {
-    margin: 20px;
-    max-width: none; /* Remove the max-width constraint */
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    position: relative;
 }
 
-/* Add mobile responsiveness for the navigation */
+.chat-messages {
+    flex: 1;
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 20px;
+    min-height: 200px;
+    overflow-y: auto;
+    padding-bottom: 80px;
+}
+
+.chat-input-container {
+    position: fixed;
+    bottom: 24px;
+    left: 274px;
+    right: 24px;
+    padding: 16px;
+    background-color: white;
+    border: 1px solid var(--qb-border);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 12px;
+    z-index: 100;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--qb-border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+    border-color: var(--qb-secondary);
+}
+
+.chat-submit {
+    padding: 8px 16px;
+    background-color: var(--qb-secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.chat-submit:hover {
+    background-color: #0062a3;
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.user-message {
+    background-color: #E3F2FD;
+    margin-left: 20%;
+    color: var(--qb-secondary);
+}
+
+.bot-message {
+    background-color: white;
+    margin-right: 20%;
+    color: var(--qb-dark);
+}
+
+/* Update mobile responsiveness */
+@media screen and (max-width: 1024px) {
+    .main-content {
+        /* Remove flex-direction change since it's already column */
+    }
+    
+    .chat-container {
+        height: 300px;  /* Smaller height on medium screens */
+    }
+}
+
 @media screen and (max-width: 768px) {
     .side-nav {
         width: 60px;
     }
-
-    .side-nav li span {
-        display: none;
+    
+    .main-content {
+        margin-left: 60px;
+        padding-top: 72px;
     }
-
-    .side-nav li i {
-        margin-right: 0;
-        font-size: 20px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .layout {
-        flex-direction: column;
-    }
-
-    .side-nav {
-        width: 100%;
-        padding: 10px 0;
-    }
-
-    .side-nav ul {
-        display: flex;
-        overflow-x: auto;
-    }
-
-    .side-nav li {
-        padding: 10px 15px;
+    
+    .chat-input-container {
+        left: 84px;
     }
 }
 
 .contact-cards {
     display: flex;
     gap: 15px;
-    overflow-x: auto;
+    width: 100%;
     padding: 10px 0;
 }
 
 .contact-card {
+    flex: 1;
+    min-width: 0;
     background: white;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 15px;
-    min-width: 200px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
@@ -232,29 +293,16 @@ body {
     color: #666;
 }
 
-/* Update scrollbar styles for contact cards */
 .contact-cards::-webkit-scrollbar {
-    height: 8px;
-}
-
-.contact-cards::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-}
-
-.contact-cards::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-}
-
-.contact-cards::-webkit-scrollbar-thumb:hover {
-    background: #666;
+    display: none;
 }
 
 .contact-btn {
+    padding: 8px;
+    width: 100%;
+    justify-content: center;
     border: none;
     border-radius: 4px;
-    padding: 8px 12px;
     cursor: pointer;
     font-family: Calibri, 'Segoe UI', sans-serif;
     font-size: 14px;
@@ -280,4 +328,230 @@ body {
 
 .phone-btn:hover {
     background-color: #c8e6c9;
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pricing-table th,
+.pricing-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--qb-border);
+}
+
+.pricing-table th {
+    background-color: var(--qb-secondary);
+    color: white;
+    font-weight: 500;
+}
+
+.pricing-table tr:last-child td {
+    border-bottom: none;
+}
+
+.pricing-table tr:hover td {
+    background-color: var(--qb-light-gray);
+}
+
+.recommendation-box {
+    margin-top: 16px;
+    padding: 16px;
+    background: #E3F2FD;
+    border-radius: 8px;
+    border: 1px solid var(--qb-secondary);
+}
+
+.update-price-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 24px;
+    background-color: var(--qb-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.update-price-btn:hover {
+    background-color: #248f16;
+}
+
+.metric-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 80px;
+}
+
+.metric-tile {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--qb-border);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    width: 90%;
+    margin: 0;
+    margin-left: 24px;
+}
+
+.metric-chart-container {
+    height: 160px;
+    margin: 16px 0;
+}
+
+.metric-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 16px;
+}
+
+.metric-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.action-btn {
+    width: auto;
+    min-width: 120px;
+    padding: 8px 16px;
+    background-color: var(--qb-secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 119, 197, 0.2);
+}
+
+.action-btn:hover {
+    background-color: #0062a3;
+    box-shadow: 0 4px 8px rgba(0, 119, 197, 0.3);
+    transform: translateY(-1px);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 119, 197, 0.2);
+}
+
+.metric-header {
+    color: var(--qb-gray);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.metric-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--qb-dark);
+    margin-bottom: 8px;
+}
+
+.metric-trend {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.metric-trend.positive {
+    color: var(--qb-primary);
+}
+
+.metric-trend.negative {
+    color: #dc3545;
+}
+
+.pricing-table tr.underperforming td {
+    background-color: #fff2f2;
+    color: #dc3545;
+}
+
+.network-graph {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.network-graph svg {
+    width: 100%;
+    height: auto;
+}
+
+.node {
+    fill: white;
+    stroke: var(--qb-secondary);
+    stroke-width: 2;
+}
+
+.central-node {
+    fill: var(--qb-secondary);
+}
+
+.connection-line {
+    stroke: var(--qb-secondary);
+    stroke-width: 2;
+    opacity: 0.5;
+}
+
+.node-text {
+    fill: var(--qb-dark);
+    text-anchor: middle;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.central-text {
+    fill: white;
+}
+
+.source-label {
+    fill: var(--qb-gray);
+    text-anchor: middle;
+    font-size: 14px;
+}
+
+.node-link {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.node-link:hover {
+    opacity: 0.8;
+}
+
+.node-link:hover .node {
+    fill: var(--qb-light-gray);
+}
+
+.node-text {
+    fill: var(--qb-dark);
+    text-anchor: middle;
+    font-size: 14px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.source-label {
+    fill: var(--qb-gray);
+    text-anchor: middle;
+    font-size: 12px;
+    pointer-events: none;
 } 
