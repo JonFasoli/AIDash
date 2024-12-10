@@ -507,3 +507,26 @@ function generateReply(reviewId) {
         addMessage(response);
     }, 1000);
 }
+
+function toggleNotifications() {
+    const drawer = document.querySelector('.notifications-drawer');
+    drawer.classList.toggle('open');
+    
+    // Optional: Remove notification badge when opened
+    if (drawer.classList.contains('open')) {
+        const badge = document.querySelector('.notification-badge');
+        if (badge) {
+            badge.style.display = 'none';
+        }
+    }
+}
+
+// Optional: Close drawer when clicking outside
+document.addEventListener('click', (e) => {
+    const drawer = document.querySelector('.notifications-drawer');
+    const notifications = document.querySelector('.notifications');
+    
+    if (!drawer.contains(e.target) && !notifications.contains(e.target) && drawer.classList.contains('open')) {
+        drawer.classList.remove('open');
+    }
+});

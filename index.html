@@ -13,18 +13,23 @@
         <div class="logo">
             <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal Logo">
         </div>
-        <div class="settings">
-            <i class="fas fa-cog"></i>
+        <div class="header-actions">
+            <div class="notifications" onclick="toggleNotifications()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
+            </div>
+            <div class="settings">
+                <i class="fas fa-cog"></i>
+            </div>
         </div>
     </header>
     <div class="layout">
         <nav class="side-nav">
             <ul>
-                <li class="active"><i class="fas fa-home"></i> Dashboard</li>
+                <li class="active">Dashboard</li>
                 
                 <li class="nav-group">
                     <div class="nav-header">
-                        <i class="fas fa-university"></i>
                         <span>Transactions</span>
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
@@ -36,7 +41,7 @@
                 
                 <li class="nav-group">
                     <div class="nav-header">
-                        <i class="fas fa-chart-line"></i> Grow
+                        <span>Grow</span>
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                     <ul class="sub-nav">
@@ -48,7 +53,7 @@
                 
                 <li class="nav-group">
                     <div class="nav-header">
-                        <i class="fas fa-money-bill"></i> Get Paid
+                        <span>Get Paid</span>
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                     <ul class="sub-nav">
@@ -64,7 +69,7 @@
                 
                 <li class="nav-group">
                     <div class="nav-header">
-                        <i class="fas fa-credit-card"></i> Pay
+                        <span>Pay</span>
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                     <ul class="sub-nav">
@@ -77,7 +82,7 @@
                 
                 <li class="nav-group">
                     <div class="nav-header">
-                        <i class="fas fa-chart-bar"></i> Analytics
+                        <span>Analytics</span>
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                     <ul class="sub-nav">
@@ -89,7 +94,7 @@
                 
                 <li class="nav-group">
                     <div class="nav-header">
-                        <i class="fas fa-ellipsis-h"></i> More
+                        <span>More</span>
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                     <ul class="sub-nav">
@@ -197,5 +202,57 @@
     </div>
 
     <script src="script.js"></script>
+
+    <!-- Add notifications drawer -->
+    <div class="notifications-drawer">
+        <div class="drawer-header">
+            <h2>Notifications</h2>
+            <button class="close-drawer" onclick="toggleNotifications()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notifications-list">
+            <div class="notification-item unread">
+                <div class="notification-icon success">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Large Order Received</div>
+                    <div class="notification-text">New order worth $2,450 from repeat customer John's Electronics</div>
+                    <div class="notification-time">2 minutes ago</div>
+                </div>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Inventory Alert</div>
+                    <div class="notification-text">Product "Portable Charger Pro" is running low (5 units remaining)</div>
+                    <div class="notification-time">15 minutes ago</div>
+                </div>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon info">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">New Customer Reviews</div>
+                    <div class="notification-text">12 new customer reviews need your attention</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon opportunity">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Sales Opportunity</div>
+                    <div class="notification-text">Similar businesses increased revenue by enabling guest checkout</div>
+                    <div class="notification-time">3 hours ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html> 
