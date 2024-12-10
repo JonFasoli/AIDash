@@ -19,7 +19,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 12px 24px;
-    background-color: white;
+    background: linear-gradient(135deg, white 0%, var(--qb-secondary) 100%);
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     height: 48px;
     position: fixed;
@@ -35,13 +35,13 @@ body {
 
 .settings {
     font-size: 20px;
-    color: var(--qb-gray);
+    color: white;
     cursor: pointer;
     padding: 8px;
 }
 
 .settings:hover {
-    color: var(--qb-secondary);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .container {
@@ -52,6 +52,7 @@ body {
     overflow-x: auto;
     justify-content: flex-start;
     padding-left: 24px;
+    transition: gap 0.3s ease-out;
 }
 
 .tile {
@@ -66,7 +67,7 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s ease-out;
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     border: 1px solid var(--qb-border);
 }
@@ -659,13 +660,13 @@ body {
 .notifications {
     position: relative;
     font-size: 20px;
-    color: var(--qb-gray);
+    color: white;
     cursor: pointer;
     padding: 8px;
 }
 
 .notifications:hover {
-    color: var(--qb-secondary);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .notification-badge {
@@ -860,4 +861,94 @@ body {
 .nav-buttons {
     position: relative;
     z-index: 10000;
+}
+
+.sales-counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 24px;
+}
+
+.sales-amount {
+    font-weight: 600;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+
+.sales-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+.sales-counter {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.sales-counter:hover {
+    opacity: 0.8;
+}
+
+.sales-checklist {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background-color: white;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+    transition: right 0.3s ease-out;
+    z-index: 1001;
+}
+
+.sales-checklist.open {
+    right: 0;
+}
+
+.checklist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--qb-border);
+}
+
+.checklist-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: var(--qb-dark);
+}
+
+.checklist-content {
+    padding: 24px;
+}
+
+.checklist-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.checklist-item label {
+    font-weight: 500;
+    color: var(--qb-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checklist-description {
+    font-size: 13px;
+    color: var(--qb-gray);
+    margin-left: 24px;
+}
+
+.checklist-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--qb-secondary);
 } 

@@ -235,6 +235,9 @@ document.addEventListener('DOMContentLoaded', function() {
             group.classList.toggle('expanded');
         });
     });
+    
+    // Add sales counter animation
+    animateSalesCounter(104345, 108492, 2000); // 2 seconds duration
 });
 
 function initializeCharts() {
@@ -534,4 +537,139 @@ document.addEventListener('click', (e) => {
 function togglePayOverlay() {
     const overlay = document.querySelector('.pay-overlay');
     overlay.classList.toggle('open');
+}
+
+// Add array of potential AI agent actions
+const aiActions = [
+    {
+        number: "$12K",
+        text: "Automate customer win-back<br>campaigns for churned users",
+        handler: "automateWinBack"
+    },
+    {
+        number: "$8K",
+        text: "Auto-adjust product pricing<br>based on competitor data",
+        handler: "autoAdjustPricing"
+    },
+    {
+        number: "$15K",
+        text: "Set up automated upsell<br>recommendations at checkout",
+        handler: "automateUpsells"
+    },
+    {
+        number: "$21K",
+        text: "Launch AI-powered abandoned<br>cart recovery system",
+        handler: "automateCartRecovery"
+    }
+];
+
+let usedActions = [];
+
+function handleTileClick(clickedTile, originalHandler) {
+    // First remove the clicked tile
+    clickedTile.style.opacity = '0';
+    
+    setTimeout(() => {
+        clickedTile.remove();
+        
+        // Add new AI action tile
+        const newAction = getNewAiAction();
+        if (newAction) {
+            const newTile = createAiTile(newAction);
+            const container = document.querySelector('.container');
+            container.appendChild(newTile);
+            
+            // Animate new tile entrance
+            setTimeout(() => {
+                newTile.style.opacity = '1';
+                
+                // Now execute the original handler and scroll
+                setTimeout(() => {
+                    window[originalHandler]();
+                    scrollToBottom();
+                }, 300);
+            }, 50);
+        }
+    }, 300);
+}
+
+function getNewAiAction() {
+    const unusedActions = aiActions.filter(action => !usedActions.includes(action));
+    if (unusedActions.length === 0) return null;
+    
+    const randomAction = unusedActions[Math.floor(Math.random() * unusedActions.length)];
+    usedActions.push(randomAction);
+    return randomAction;
+}
+
+function createAiTile(action) {
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.style.opacity = '0';
+    tile.style.transition = 'opacity 0.3s ease-out';
+    tile.onclick = () => handleTileClick(tile, action.handler);
+    
+    tile.innerHTML = `
+        <div class="number">${action.number}</div>
+        <span>${action.text}</span>
+    `;
+    
+    return tile;
+}
+
+// Add new AI action handlers
+function automateWinBack() {
+    scrollToBottom();
+    const prompt = "Set up automated win-back campaigns targeting churned customers with personalized offers based on their purchase history.";
+    addMessage("Setting up automated win-back campaigns...", true);
+    // ... rest of handler
+}
+
+function autoAdjustPricing() {
+    scrollToBottom();
+    const prompt = "Configure automated price adjustments based on real-time competitor data and demand patterns.";
+    addMessage("Configuring automated pricing system...", true);
+    // ... rest of handler
+}
+
+function automateUpsells() {
+    scrollToBottom();
+    const prompt = "Implement AI-powered product recommendations to show personalized upsells during checkout.";
+    addMessage("Setting up automated upsell system...", true);
+    // ... rest of handler
+}
+
+function automateCartRecovery() {
+    scrollToBottom();
+    const prompt = "Deploy an intelligent cart recovery system that sends personalized reminders and incentives.";
+    addMessage("Deploying cart recovery automation...", true);
+    // ... rest of handler
+}
+
+function animateSalesCounter(start, end, duration) {
+    const element = document.getElementById('salesNumber');
+    const range = end - start;
+    const startTime = performance.now();
+    
+    function updateNumber(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuad = progress * (2 - progress);
+        
+        const current = Math.floor(start + (range * easeOutQuad));
+        element.textContent = current.toLocaleString();
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+        }
+    }
+    
+    requestAnimationFrame(updateNumber);
+}
+
+function toggleSalesChecklist() {
+    const checklist = document.querySelector('.sales-checklist');
+    checklist.classList.toggle('open');
 }

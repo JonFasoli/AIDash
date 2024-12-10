@@ -14,12 +14,16 @@
             <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal Logo">
         </div>
         <div class="header-actions">
-            <div class="notifications" onclick="toggleNotifications()">
-                <i class="fas fa-bell"></i>
-                <span class="notification-badge">3</span>
+            <div class="sales-counter" onclick="toggleSalesChecklist()">
+                <div class="sales-amount">$<span id="salesNumber">104345</span></div>
+                <div class="sales-label">Annual Sales</div>
             </div>
             <div class="settings">
                 <i class="fas fa-cog"></i>
+            </div>
+            <div class="notifications" onclick="toggleNotifications()">
+                <i class="fas fa-bell"></i>
+                <span class="notification-badge">3</span>
             </div>
         </div>
     </header>
@@ -121,19 +125,19 @@
         </nav>
         <main class="main-content">
             <div class="container">
-                <div class="tile" onclick="showPricingAnalysis()">
+                <div class="tile" onclick="handleTileClick(this, 'showPricingAnalysis')">
                     <div class="number">$14K</div>
                     <span>Lost revenue.<br>View your pricing analysis</span>
                 </div>
-                <div class="tile" onclick="askMath()">
+                <div class="tile" onclick="handleTileClick(this, 'askMath')">
                     <div class="number">54</div>
                     <span>New customer reviews<br>since last log in</span>
                 </div>
-                <div class="tile" onclick="askTax()">
+                <div class="tile" onclick="handleTileClick(this, 'askTax')">
                     <div class="number">$10K</div>
                     <span>Potential tax savings found</span>
                 </div>
-                <div class="tile" onclick="showChannelPerformance()">
+                <div class="tile" onclick="handleTileClick(this, 'showChannelPerformance')">
                     <div class="number">2</div>
                     <span>Underperforming<br>channels</span>
                 </div>
@@ -265,6 +269,27 @@
                     <div class="notification-text">Similar businesses increased revenue by enabling guest checkout</div>
                     <div class="notification-time">3 hours ago</div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sales-checklist">
+        <div class="checklist-header">
+            <h2>Increase Your Sales</h2>
+            <button class="close-drawer" onclick="toggleSalesChecklist()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="checklist-content">
+            <div class="checklist-item">
+                <input type="checkbox" id="connect-stores">
+                <label for="connect-stores">Connect Storefronts</label>
+                <span class="checklist-description">Integrate your Shopify, Amazon, and other sales channels</span>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="connect-crm">
+                <label for="connect-crm">Connect CRM</label>
+                <span class="checklist-description">Sync customer data with Salesforce, HubSpot, or other CRM</span>
             </div>
         </div>
     </div>
