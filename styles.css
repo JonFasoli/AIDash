@@ -241,10 +241,6 @@ body {
 
 /* Update mobile responsiveness */
 @media screen and (max-width: 1024px) {
-    .main-content {
-        /* Remove flex-direction change since it's already column */
-    }
-    
     .chat-container {
         height: 500px;
     }
@@ -796,4 +792,72 @@ body {
 .notification-time {
     font-size: 12px;
     color: var(--qb-gray);
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+    padding: 16px 16px;
+    position: relative;
+    z-index: 10000;
+}
+
+.nav-action-btn {
+    flex: 1;
+    padding: 8px 16px;
+    background-color: var(--qb-secondary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.nav-action-btn:hover {
+    background-color: #0062a3;
+}
+
+.pay-overlay {
+    position: absolute;
+    left: calc(50% - 8px);
+    top: -16px;
+    width: 0;
+    height: 200px;
+    background-color: var(--qb-secondary);
+    border-radius: 0 8px 8px 0;
+    box-shadow: 4px 0 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: width 0.3s ease-out;
+    z-index: 10000;
+}
+
+.pay-overlay.open {
+    width: 400px;
+}
+
+.overlay-content {
+    padding: 16px;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.overlay-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 0;
+}
+
+.overlay-link:hover {
+    text-decoration: underline;
+}
+
+/* Make nav-buttons position relative for overlay positioning */
+.nav-buttons {
+    position: relative;
+    z-index: 10000;
 } 

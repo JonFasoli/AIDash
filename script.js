@@ -530,3 +530,8 @@ document.addEventListener('click', (e) => {
         drawer.classList.remove('open');
     }
 });
+
+function togglePayOverlay() {
+    const overlay = document.querySelector('.pay-overlay');
+    overlay.classList.toggle('open');
+}
