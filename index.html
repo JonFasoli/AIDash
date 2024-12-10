@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Tiles</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://www.paypalobjects.com/digitalassets/c/website/logo/full-text/pp_fc_hl.svg" alt="PayPal Logo">
+        </div>
+        <div class="settings">
+            <i class="fas fa-cog"></i>
+        </div>
+    </header>
+    <div class="layout">
+        <nav class="side-nav">
+            <ul>
+                <li class="active"><i class="fas fa-home"></i> Dashboard</li>
+                <li><i class="fas fa-users"></i> Get Customers</li>
+                <li><i class="fas fa-money-bill"></i> Get Paid</li>
+                <li><i class="fas fa-credit-card"></i> Pay</li>
+                <li><i class="fas fa-chart-line"></i> Cash Flow</li>
+                <li><i class="fas fa-cogs"></i> Operations</li>
+                <li><i class="fas fa-file-alt"></i> Reporting</li>
+                <li><i class="fas fa-ellipsis-h"></i> More</li>
+            </ul>
+        </nav>
+        <main class="main-content">
+            <div class="container">
+                <div class="tile" onclick="askMath()">
+                    <span>5 Customers likely to repurchase</span>
+                </div>
+                <div class="tile">2</div>
+                <div class="tile">3</div>
+                <div class="tile">4</div>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
