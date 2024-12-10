@@ -219,6 +219,22 @@ function getActionPlan(metricType) {
 // Initialize charts when the page loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeCharts();
+    const navGroups = document.querySelectorAll('.nav-group');
+    
+    navGroups.forEach(group => {
+        const header = group.querySelector('.nav-header');
+        header.addEventListener('click', () => {
+            // Close other open groups
+            navGroups.forEach(otherGroup => {
+                if (otherGroup !== group && otherGroup.classList.contains('expanded')) {
+                    otherGroup.classList.remove('expanded');
+                }
+            });
+            
+            // Toggle current group
+            group.classList.toggle('expanded');
+        });
+    });
 });
 
 function initializeCharts() {
@@ -390,65 +406,104 @@ function scrollToBottom() {
 
 function askMath() {
     scrollToBottom();
-    const prompt = "Generate a network graph visualization showing review sources and their counts...";
+    const prompt = "Display a list of 10 usernames, the channel that they left a review, the first sentence of their review, a sentiment score of the review, and a button next to each row to 'Generate reply'";
     
-    addMessage("Here's the breakdown of your 54 new customer reviews by source:", true);
+    addMessage("Here are your recent customer reviews:", true);
     
     setTimeout(() => {
         const response = `
-            <div class="network-graph">
-                <svg viewBox="0 0 800 400">
-                    <!-- Central node -->
-                    <circle cx="400" cy="200" r="40" class="node central-node" />
-                    <text x="400" y="205" class="node-text central-text" dominant-baseline="middle">54</text>
-                    
-                    <!-- Google Reviews -->
-                    <a href="https://business.google.com/reviews" target="_blank" class="node-link">
-                        <line x1="400" y1="200" x2="250" y2="150" class="connection-line" />
-                        <circle cx="250" cy="150" r="35" class="node" />
-                        <text x="250" y="150" class="node-text" dominant-baseline="middle">28</text>
-                        <text x="250" y="175" class="source-label" dominant-baseline="middle">Google</text>
-                    </a>
-                    
-                    <!-- Facebook -->
-                    <a href="https://business.facebook.com/reviews" target="_blank" class="node-link">
-                        <line x1="400" y1="200" x2="550" y2="150" class="connection-line" />
-                        <circle cx="550" cy="150" r="30" class="node" />
-                        <text x="550" y="150" class="node-text" dominant-baseline="middle">12</text>
-                        <text x="550" y="175" class="source-label" dominant-baseline="middle">Facebook</text>
-                    </a>
-                    
-                    <!-- Yelp -->
-                    <a href="https://biz.yelp.com" target="_blank" class="node-link">
-                        <line x1="400" y1="200" x2="250" y2="300" class="connection-line" />
-                        <circle cx="250" cy="300" r="25" class="node" />
-                        <text x="250" y="300" class="node-text" dominant-baseline="middle">8</text>
-                        <text x="250" y="325" class="source-label" dominant-baseline="middle">Yelp</text>
-                    </a>
-                    
-                    <!-- TrustPilot -->
-                    <a href="https://business.trustpilot.com" target="_blank" class="node-link">
-                        <line x1="400" y1="200" x2="550" y2="300" class="connection-line" />
-                        <circle cx="550" cy="300" r="25" class="node" />
-                        <text x="550" y="300" class="node-text" dominant-baseline="middle">6</text>
-                        <text x="550" y="325" class="source-label" dominant-baseline="middle">TrustPilot</text>
-                    </a>
-                </svg>
-            </div>
-            <div class="recommendation-box">
-                <strong>Analysis:</strong> Most of your new reviews (52%) are coming from Google Reviews, suggesting strong visibility on the platform. Consider encouraging more reviews on other platforms, especially TrustPilot where you have the lowest representation.
-                <button class="action-btn" onclick="manageReviews()">
-                    Manage review strategy
-                </button>
-            </div>
+            <table class="pricing-table reviews-table">
+                <tr>
+                    <th>Customer</th>
+                    <th>Channel</th>
+                    <th>Review Preview</th>
+                    <th>Sentiment</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>JohnD2024</td>
+                    <td>Google</td>
+                    <td>Great service and fast shipping!</td>
+                    <td><span class="sentiment positive">0.92</span></td>
+                    <td><button class="action-btn" onclick="generateReply(1)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>SarahM</td>
+                    <td>Facebook</td>
+                    <td>Product was damaged upon arrival.</td>
+                    <td><span class="sentiment negative">0.21</span></td>
+                    <td><button class="action-btn" onclick="generateReply(2)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>TechBuyer85</td>
+                    <td>TrustPilot</td>
+                    <td>Exactly what I needed for my setup.</td>
+                    <td><span class="sentiment positive">0.88</span></td>
+                    <td><button class="action-btn" onclick="generateReply(3)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>EmmaW</td>
+                    <td>Google</td>
+                    <td>The customer service team was very helpful.</td>
+                    <td><span class="sentiment positive">0.95</span></td>
+                    <td><button class="action-btn" onclick="generateReply(4)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>PowerUser</td>
+                    <td>Yelp</td>
+                    <td>Shipping took longer than expected.</td>
+                    <td><span class="sentiment negative">0.35</span></td>
+                    <td><button class="action-btn" onclick="generateReply(5)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>Alex_R</td>
+                    <td>Google</td>
+                    <td>Perfect replacement for my old charger.</td>
+                    <td><span class="sentiment positive">0.89</span></td>
+                    <td><button class="action-btn" onclick="generateReply(6)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>CamperPro</td>
+                    <td>Facebook</td>
+                    <td>Works great for my RV setup!</td>
+                    <td><span class="sentiment positive">0.91</span></td>
+                    <td><button class="action-btn" onclick="generateReply(7)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>Lisa2024</td>
+                    <td>TrustPilot</td>
+                    <td>Instructions could be clearer.</td>
+                    <td><span class="sentiment neutral">0.45</span></td>
+                    <td><button class="action-btn" onclick="generateReply(8)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>OutdoorGuy</td>
+                    <td>Yelp</td>
+                    <td>Perfect for camping trips!</td>
+                    <td><span class="sentiment positive">0.94</span></td>
+                    <td><button class="action-btn" onclick="generateReply(9)">Generate reply</button></td>
+                </tr>
+                <tr>
+                    <td>TechieGirl</td>
+                    <td>Google</td>
+                    <td>Battery life exceeds expectations.</td>
+                    <td><span class="sentiment positive">0.97</span></td>
+                    <td><button class="action-btn" onclick="generateReply(10)">Generate reply</button></td>
+                </tr>
+            </table>
         `;
         addMessage(response);
     }, 1000);
 }
 
-function manageReviews() {
-    addMessage("Generating review management strategy...", true);
+function generateReply(reviewId) {
+    addMessage("Generating personalized response...", true);
     setTimeout(() => {
-        addMessage("✅ Review management dashboard is ready. You can now view detailed analytics and set up automated review response templates.");
+        const response = `Here's a suggested reply for review #${reviewId}:
+        
+        Thank you for taking the time to share your experience! We greatly value your feedback and are committed to providing the best possible service. We appreciate your support and hope to serve you again soon.
+        
+        [Click to copy and customize this response]`;
+        addMessage(response);
     }, 1000);
 }

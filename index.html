@@ -21,24 +21,94 @@
         <nav class="side-nav">
             <ul>
                 <li class="active"><i class="fas fa-home"></i> Dashboard</li>
-                <li><i class="fas fa-users"></i> Get Customers</li>
-                <li><i class="fas fa-money-bill"></i> Get Paid</li>
-                <li><i class="fas fa-credit-card"></i> Pay</li>
-                <li><i class="fas fa-chart-line"></i> Cash Flow</li>
-                <li><i class="fas fa-cogs"></i> Operations</li>
-                <li><i class="fas fa-file-alt"></i> Reporting</li>
-                <li><i class="fas fa-ellipsis-h"></i> More</li>
+                
+                <li class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-university"></i>
+                        <span>Transactions</span>
+                        <i class="fas fa-chevron-right arrow"></i>
+                    </div>
+                    <ul class="sub-nav">
+                        <li>Transactions</li>
+                        <li>Debit Card</li>
+                    </ul>
+                </li>
+                
+                <li class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-chart-line"></i> Grow
+                        <i class="fas fa-chevron-right arrow"></i>
+                    </div>
+                    <ul class="sub-nav">
+                        <li>Customers</li>
+                        <li>Capital</li>
+                        <li>Forms</li>
+                    </ul>
+                </li>
+                
+                <li class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-money-bill"></i> Get Paid
+                        <i class="fas fa-chevron-right arrow"></i>
+                    </div>
+                    <ul class="sub-nav">
+                        <li>Estimates</li>
+                        <li>Invoicing</li>
+                        <li>Pay Pages</li>
+                        <li>Point-of-sale</li>
+                        <li>Subscriptions</li>
+                        <li>Checkout</li>
+                        <li>Virtual Terminal</li>
+                    </ul>
+                </li>
+                
+                <li class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-credit-card"></i> Pay
+                        <i class="fas fa-chevron-right arrow"></i>
+                    </div>
+                    <ul class="sub-nav">
+                        <li>Bill Pay</li>
+                        <li>Offers</li>
+                        <li>Contractor Pmts.</li>
+                        <li>Taxes</li>
+                    </ul>
+                </li>
+                
+                <li class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                        <i class="fas fa-chevron-right arrow"></i>
+                    </div>
+                    <ul class="sub-nav">
+                        <li>TransactionIQ</li>
+                        <li>CustomerIQ</li>
+                        <li>MarketingIQ</li>
+                    </ul>
+                </li>
+                
+                <li class="nav-group">
+                    <div class="nav-header">
+                        <i class="fas fa-ellipsis-h"></i> More
+                        <i class="fas fa-chevron-right arrow"></i>
+                    </div>
+                    <ul class="sub-nav">
+                        <li>Shipping</li>
+                        <li>Offers</li>
+                        <li>Resolution Center</li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <main class="main-content">
             <div class="container">
-                <div class="tile" onclick="askMath()">
-                    <div class="number">54</div>
-                    <span>New customer reviews<br>since last log in</span>
-                </div>
                 <div class="tile" onclick="showPricingAnalysis()">
                     <div class="number">$14K</div>
                     <span>Lost revenue.<br>View your pricing analysis</span>
+                </div>
+                <div class="tile" onclick="askMath()">
+                    <div class="number">54</div>
+                    <span>New customer reviews<br>since last log in</span>
                 </div>
                 <div class="tile" onclick="askTax()">
                     <div class="number">$10K</div>
