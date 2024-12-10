@@ -19,7 +19,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 12px 24px;
-    background: linear-gradient(135deg, white 0%, var(--qb-secondary) 100%);
+    background: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.08);
     height: 48px;
     position: fixed;
@@ -29,19 +29,25 @@ body {
     z-index: 1000;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .logo img {
-    height: 28px;
+    height: 42px;
 }
 
 .settings {
     font-size: 20px;
-    color: white;
+    color: var(--qb-dark);
     cursor: pointer;
     padding: 8px;
 }
 
 .settings:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .container {
@@ -660,13 +666,13 @@ body {
 .notifications {
     position: relative;
     font-size: 20px;
-    color: white;
+    color: var(--qb-dark);
     cursor: pointer;
     padding: 8px;
 }
 
 .notifications:hover {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.7);
 }
 
 .notification-badge {
@@ -805,7 +811,7 @@ body {
 
 .nav-action-btn {
     flex: 1;
-    padding: 8px 16px;
+    padding: 12px 16px;
     background-color: var(--qb-secondary);
     color: white;
     border: none;
@@ -873,13 +879,13 @@ body {
 .sales-amount {
     font-weight: 600;
     font-size: 18px;
-    color: white;
+    color: var(--qb-dark);
     text-align: center;
 }
 
 .sales-label {
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--qb-gray);
     text-align: center;
 }
 
@@ -951,4 +957,18 @@ body {
     width: 16px;
     height: 16px;
     accent-color: var(--qb-secondary);
-} 
+}
+
+@keyframes numberHighlight {
+    0% { color: white; }
+    10% { color: #2CA01C; }
+    50% { color: #2CA01C; }
+    100% { color: white; }
+}
+
+.business-label {
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+}
+  

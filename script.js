@@ -663,6 +663,13 @@ function animateSalesCounter(start, end, duration) {
         
         if (progress < 1) {
             requestAnimationFrame(updateNumber);
+        } else {
+            // Animation complete, trigger color flash
+            element.style.animation = 'numberHighlight 1s ease-out';
+            // Remove animation after it completes
+            setTimeout(() => {
+                element.style.animation = '';
+            }, 1000);
         }
     }
     
