@@ -88,14 +88,19 @@ function selectBank(bank) {
         analysisModal.classList.remove('show');
         // Get current savings value and add 6,420
         const savingsElement = document.getElementById('savingsNumber');
+        const fireworks = document.querySelector('.fireworks');
         const currentSavings = parseInt(savingsElement.textContent.replace(/,/g, ''));
         savingsElement.style.fontSize = '22.5px'; // Increase font size by 25%
         animateSavingsCounter(currentSavings, currentSavings + 6420, 2000);
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        // Reset font size after animation
+        // Trigger fireworks
+        fireworks.classList.add('active');
+        
+        // Reset animations
         setTimeout(() => {
             savingsElement.style.fontSize = '18px';
+            fireworks.classList.remove('active');
         }, 2000);
     }, 4000);
 }
