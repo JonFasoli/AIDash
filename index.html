@@ -18,6 +18,10 @@
                 <div class="sales-amount">$<span id="salesNumber">104345</span></div>
                 <div class="sales-label">Annual Sales</div>
             </div>
+            <div class="sales-counter" onclick="toggleSavingsChecklist()">
+                <div class="sales-amount">$<span id="savingsNumber">10420</span></div>
+                <div class="sales-label">Annual Savings</div>
+            </div>
             <div class="settings">
                 <i class="fas fa-cog"></i>
             </div>
@@ -104,9 +108,9 @@
                         <i class="fas fa-chevron-right arrow"></i>
                     </div>
                     <ul class="sub-nav">
-                        <li>TransactionIQ</li>
-                        <li>CustomerIQ</li>
-                        <li>MarketingIQ</li>
+                        <li>Transaction IQ</li>
+                        <li>Customer IQ</li>
+                        <li>Marketing IQ</li>
                     </ul>
                 </li>
                 
@@ -291,6 +295,35 @@
                 <label for="connect-crm">Connect CRM</label>
                 <span class="checklist-description">Sync customer data with Salesforce, HubSpot, or other CRM</span>
             </div>
+        </div>
+    </div>
+
+    <div class="bank-modal" id="bankModal">
+        <div class="modal-content">
+            <h2>Connect your bank to analyze tax savings</h2>
+            <div class="bank-grid">
+                <div class="bank-tile" onclick="selectBank('chase')">
+                    <img src="https://logo.clearbit.com/chase.com" alt="Chase">
+                </div>
+                <div class="bank-tile" onclick="selectBank('bofa')">
+                    <img src="https://logo.clearbit.com/bankofamerica.com" alt="Bank of America">
+                </div>
+                <div class="bank-tile" onclick="selectBank('wells')">
+                    <img src="https://logo.clearbit.com/wellsfargo.com" alt="Wells Fargo">
+                </div>
+                <div class="bank-tile" onclick="selectBank('citi')">
+                    <img src="https://logo.clearbit.com/citi.com" alt="Citibank">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="analysis-modal" id="analysisModal">
+        <div class="modal-content">
+            <div class="spinner">
+                <div class="spinner-ring"></div>
+            </div>
+            <div class="analysis-text">Analyzing transactions...</div>
         </div>
     </div>
 </body>

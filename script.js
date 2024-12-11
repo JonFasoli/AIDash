@@ -54,22 +54,50 @@ chatInput.addEventListener('keypress', (e) => {
 
 // Function for tax questions
 function askTax() {
-    scrollToBottom();
-    const prompt = "Generate the three most important questions to calculate someone's home office deduction";
+    // Show bank selection modal
+    const bankModal = document.getElementById('bankModal');
+    bankModal.classList.add('show');
+}
+
+function selectBank(bank) {
+    // Hide bank modal
+    const bankModal = document.getElementById('bankModal');
+    bankModal.classList.remove('show');
     
-    addMessage("Here are the key questions for calculating your home office deduction:", true);
+    // Show analysis modal
+    const analysisModal = document.getElementById('analysisModal');
+    analysisModal.classList.add('show');
     
-    // Simulate bot response
+    // Update analysis text periodically
+    const analysisText = document.querySelector('.analysis-text');
+    const messages = [
+        "Analyzing transactions...",
+        "Identifying tax deductions...",
+        "Calculating potential savings...",
+        "Finalizing analysis..."
+    ];
+    
+    messages.forEach((message, index) => {
+        setTimeout(() => {
+            analysisText.textContent = message;
+        }, index * 1000);
+    });
+    
+    // After 4 seconds, close modal, update savings, and scroll to top
     setTimeout(() => {
-        const response = `
-            1. What is the total square footage of your home, and what is the square footage of the space used exclusively for business?
-            
-            2. Do you use this space exclusively and regularly for business purposes, or is it a shared/multi-purpose space?
-            
-            3. What are your total home expenses, including mortgage/rent, utilities, insurance, and maintenance costs for the tax year?
-        `;
-        addMessage(response);
-    }, 1000);
+        analysisModal.classList.remove('show');
+        // Get current savings value and add 6,420
+        const savingsElement = document.getElementById('savingsNumber');
+        const currentSavings = parseInt(savingsElement.textContent.replace(/,/g, ''));
+        savingsElement.style.fontSize = '22.5px'; // Increase font size by 25%
+        animateSavingsCounter(currentSavings, currentSavings + 6420, 2000);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Reset font size after animation
+        setTimeout(() => {
+            savingsElement.style.fontSize = '18px';
+        }, 2000);
+    }, 4000);
 }
 
 // Function to show pricing analysis
@@ -236,8 +264,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add sales counter animation
+    // Add both counter animations
     animateSalesCounter(104345, 108492, 2000); // 2 seconds duration
+    animateSavingsCounter(10420, 10542, 2000); // Updated values for savings
 });
 
 function initializeCharts() {
@@ -648,6 +677,36 @@ function automateCartRecovery() {
 
 function animateSalesCounter(start, end, duration) {
     const element = document.getElementById('salesNumber');
+    const range = end - start;
+    const startTime = performance.now();
+    
+    function updateNumber(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function for smooth animation
+        const easeOutQuad = progress * (2 - progress);
+        
+        const current = Math.floor(start + (range * easeOutQuad));
+        element.textContent = current.toLocaleString();
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+        } else {
+            // Animation complete, trigger color flash
+            element.style.animation = 'numberHighlight 1s ease-out';
+            // Remove animation after it completes
+            setTimeout(() => {
+                element.style.animation = '';
+            }, 1000);
+        }
+    }
+    
+    requestAnimationFrame(updateNumber);
+}
+
+function animateSavingsCounter(start, end, duration) {
+    const element = document.getElementById('savingsNumber');
     const range = end - start;
     const startTime = performance.now();
     
